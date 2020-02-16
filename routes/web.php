@@ -11,21 +11,26 @@
 |
 */
 
-Auth::routes();
+// Route::get('/', 'FrontpageController@index');
 
+Auth::routes();
 
 Route::group(['middleware' => ['web', 'auth']], function(){
 
 	Route::get('/', function () {
+
 	    return view('welcome');
 	});
 
-	Route::post('/posts', 'PostsController@store')->name('posts.store');
-	
 	Route::get('/', 'HomeController@index');
-
+	
 	Route::post('comment/{post}', 'CommentController@postComment')->name('addComment');
 
+	Route::post('/posts', 'PostsController@store')->name('posts.store');
+
+	Route::post('/posts/like','LikeController@postLike')->name('postlike');
+
+	Route::get('posts/{id}', 'PostsController@destroy')->name('deletePost');
 
 });
 

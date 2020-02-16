@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    
+
+    use LikeTrait;
+ 
 
     public function user()
     {
@@ -17,4 +19,5 @@ class Post extends Model
     {
     	return $this->morphMany(Comment::class, 'commentable');
     }
+
 }
